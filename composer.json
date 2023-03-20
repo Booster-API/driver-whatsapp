@@ -1,0 +1,50 @@
+{
+    "name": "luissobrinho/driver-whatsapp-web",
+    "version": "1.0",
+    "license": "MIT",
+    "description": "Whatsapp Web driver for BotMan",
+    "keywords": [
+        "Bot",
+        "BotMan",
+        "Whatsapp Web"
+    ],
+    "homepage": "http://github.com/luissobrinho/driver-whatsapp-web",
+    "authors": [
+        {
+            "name": "Luis Sobrinho",
+            "email": "ads.luis.sobrinho@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "botman/botman": "^2.6",
+        "ext-curl": "*",
+        "capevace/laravel-gpt": "^1.0"
+    },
+    "require-dev": {
+        "illuminate/contracts": "^9.0",
+        "phpunit/phpunit": "^5.0",
+        "mockery/mockery": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "BotMan\\Drivers\\WhatsappWeb\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "cs": "php-cs-fixer fix"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BotMan\\Drivers\\WhatsappWeb\\Providers\\WhatsappWebServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "botman/driver-config": [
+        "stubs/whatsapp-web.php"
+    ],
+    "botman/driver": [
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramDriver",
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramAudioDriver",
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramFileDriver",
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramLocationDriver",
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramContactDriver",
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramPhotoDriver",
+        "BotMan\\Drivers\\WhatsappWeb\\TelegramVideoDriver"
+    ],
+    "botman/commands": [
+        "BotMan\\Drivers\\WhatsappWeb\\Console\\Commands\\TelegramRegisterCommand"
+    ]
+}
