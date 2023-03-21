@@ -19,7 +19,7 @@ composer require booster-api/driver-whatsapp
 ## Configuração
 Para usar este Driver, você precisa adicionar as seguintes configurações ao seu arquivo `config/botman/whatsapp-web.php`:
 
-```injectablephp
+```php
 return [
 
     /*
@@ -54,7 +54,7 @@ WHATSAPP_WEB_API_KEY=your_api_key
 ## Uso
 Para usar este Driver, basta criar uma nova instância do Botman e definir as rotas de conversação da seguinte maneira:
 
-```injectablephp
+```php
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
@@ -82,14 +82,14 @@ Para mais informações sobre como usar o Botman, consulte a documentação ofic
 ## Features
 lista de tipos de mensagens que podem ser enviadas usando o Driver do Botman para o WhatsApp:
 
--[X] Texto: mensagens de texto simples
--[X] Imagens: mensagens com imagens (JPEG ou PNG)
--[X] Arquivos de áudio: mensagens de áudio (MP3 ou AAC)
--[X] Vídeos: mensagens com vídeos (MP4)
--[ ] Localização: mensagens com a localização do remetente
--[ ] Contatos: mensagens com informações de contato (nome e número de telefone)
--[X] Documentos: mensagens com documentos anexados (PDF, DOCX, XLSX)
--[ ] Mensagens de sistema: mensagens que o WhatsApp envia, como notificações de entrega, leitura e outras informações de status.
+- [X] Texto: mensagens de texto simples
+- [X] Imagens: mensagens com imagens (JPEG ou PNG)
+- [X] Arquivos de áudio: mensagens de áudio (MP3 ou AAC)
+- [X] Vídeos: mensagens com vídeos (MP4)
+- [ ] Localização: mensagens com a localização do remetente
+- [ ] Contatos: mensagens com informações de contato (nome e número de telefone)
+- [X] Documentos: mensagens com documentos anexados (PDF, DOCX, XLSX)
+- [ ] Mensagens de sistema: mensagens que o WhatsApp envia, como notificações de entrega, leitura e outras informações de status.
 
 ## Contribuição
 Se você quiser contribuir com este Driver, sinta-se à vontade para enviar um pull request ou abrir uma nova issue. Sua ajuda é muito bem-vinda!
