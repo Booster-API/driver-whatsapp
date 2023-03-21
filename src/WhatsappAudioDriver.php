@@ -2,13 +2,13 @@
 
 namespace BotMan\Drivers\WhatsappWeb;
 
-use BotMan\BotMan\Messages\Attachments\File;
+use BotMan\BotMan\Messages\Attachments\Audio;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\FileException;
+use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\AudioException;
 
-class WhatsappWebFileDriver extends WhatsappWebDriver
+class WhatsappAudioDriver extends WhatsappDriver
 {
-    const DRIVER_NAME = 'TelegramFile';
+    const DRIVER_NAME = 'TelegramAudio';
 
     /**
      * Determine if the request is for this driver.
@@ -17,7 +17,7 @@ class WhatsappWebFileDriver extends WhatsappWebDriver
      */
     public function matchesRequest(): bool
     {
-        return $this->event->get('type') === 'document' && !$this->fromMe();
+        return in_array($this->event->get('type'), ['ptt', 'audio']) && !$this->fromMe();
     }
 
     /**
@@ -48,25 +48,25 @@ class WhatsappWebFileDriver extends WhatsappWebDriver
     public function loadMessages()
     {
         $message = new IncomingMessage(
-            File::PATTERN,
+            Audio::PATTERN,
             $this->event->get('from'),
             $this->event->get('to'),
             $this->event
         );
-        $message->setFiles($this->getFiles());
+        $message->setAudio($this->getAudio());
 
         $this->messages = [$message];
     }
 
     /**
-     * Retrieve a file from an incoming message.
-     * @return array A download for the files.
+     * Retrieve a image from an incoming message.
+     * @return array A download for the audio file.
      */
-    private function getFiles(): array
+    private function getAudio(): array
     {
-        $file = $this->message->get('attachmentData');
+        $audio = $this->message->get('attachmentData');
 
-        return [new File($this->buildFileApiUrl(), $file['data'])];
+        return [new Audio($this->buildFileApiUrl(), $audio['data'])];
     }
 
     /**

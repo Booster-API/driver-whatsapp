@@ -2,12 +2,13 @@
 
 namespace BotMan\Drivers\WhatsappWeb;
 
+use BotMan\BotMan\Messages\Attachments\Video;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BotMan\BotMan\Messages\Attachments\Contact;
+use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\VideoException;
 
-class WhatsappWebContactDriver extends WhatsappWebDriver
+class WhatsappVideoDriver extends WhatsappDriver
 {
-    const DRIVER_NAME = 'TelegramContact';
+    const DRIVER_NAME = 'TelegramVideo';
 
     /**
      * Determine if the request is for this driver.
@@ -16,7 +17,7 @@ class WhatsappWebContactDriver extends WhatsappWebDriver
      */
     public function matchesRequest(): bool
     {
-        return ! is_null($this->event->get('from')) && ! is_null($this->event->get('contact'));
+        return $this->event->get('type') === 'video' && !$this->fromMe();
     }
 
     /**
@@ -46,16 +47,27 @@ class WhatsappWebContactDriver extends WhatsappWebDriver
      */
     public function loadMessages()
     {
-        $message = new IncomingMessage(Contact::PATTERN, $this->event->get('from')['id'], $this->event->get('chat')['id'], $this->event);
-        $message->setContact(new Contact(
-            $this->event->get('contact')['phone_number'] ?? '',
-            $this->event->get('contact')['first_name'] ?? '',
-            $this->event->get('contact')['last_name'] ?? '',
-            $this->event->get('contact')['user_id'],
-            $this->event->get('contact')['vcard'] ?? ''
-        ));
+        $message = new IncomingMessage(
+            Video::PATTERN,
+            $this->event->get('from'),
+            $this->event->get('to'),
+            $this->event
+        );
+        $message->setVideos($this->getVideos());
 
         $this->messages = [$message];
+    }
+
+    /**
+     * Retrieve a image from an incoming message.
+     * @return array A download for the image file.
+     */
+    private function getVideos(): array
+    {
+        $video = $this->message->get('attachmentData');
+//        $caption = $this->event->get('caption');
+
+        return [new Video($this->buildFileApiUrl(), $video['data'])];
     }
 
     /**

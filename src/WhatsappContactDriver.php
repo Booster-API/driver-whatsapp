@@ -2,13 +2,12 @@
 
 namespace BotMan\Drivers\WhatsappWeb;
 
-use BotMan\BotMan\Messages\Attachments\Audio;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\AudioException;
+use BotMan\BotMan\Messages\Attachments\Contact;
 
-class WhatsappWebAudioDriver extends WhatsappWebDriver
+class WhatsappContactDriver extends WhatsappDriver
 {
-    const DRIVER_NAME = 'TelegramAudio';
+    const DRIVER_NAME = 'TelegramContact';
 
     /**
      * Determine if the request is for this driver.
@@ -17,7 +16,7 @@ class WhatsappWebAudioDriver extends WhatsappWebDriver
      */
     public function matchesRequest(): bool
     {
-        return in_array($this->event->get('type'), ['ptt', 'audio']) && !$this->fromMe();
+        return ! is_null($this->event->get('from')) && ! is_null($this->event->get('contact'));
     }
 
     /**
@@ -47,26 +46,16 @@ class WhatsappWebAudioDriver extends WhatsappWebDriver
      */
     public function loadMessages()
     {
-        $message = new IncomingMessage(
-            Audio::PATTERN,
-            $this->event->get('from'),
-            $this->event->get('to'),
-            $this->event
-        );
-        $message->setAudio($this->getAudio());
+        $message = new IncomingMessage(Contact::PATTERN, $this->event->get('from')['id'], $this->event->get('chat')['id'], $this->event);
+        $message->setContact(new Contact(
+            $this->event->get('contact')['phone_number'] ?? '',
+            $this->event->get('contact')['first_name'] ?? '',
+            $this->event->get('contact')['last_name'] ?? '',
+            $this->event->get('contact')['user_id'],
+            $this->event->get('contact')['vcard'] ?? ''
+        ));
 
         $this->messages = [$message];
-    }
-
-    /**
-     * Retrieve a image from an incoming message.
-     * @return array A download for the audio file.
-     */
-    private function getAudio(): array
-    {
-        $audio = $this->message->get('attachmentData');
-
-        return [new Audio($this->buildFileApiUrl(), $audio['data'])];
     }
 
     /**

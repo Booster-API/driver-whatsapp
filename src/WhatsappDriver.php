@@ -24,7 +24,7 @@ use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use BotMan\Drivers\WhatsappWeb\Exceptions\WhatsappWebException;
 use Symfony\Component\Mime\MimeTypes;
 
-class WhatsappWebDriver extends HttpDriver
+class WhatsappDriver extends HttpDriver
 {
     const DRIVER_NAME = 'WhatsappWeb';
     const GENERIC_EVENTS = [

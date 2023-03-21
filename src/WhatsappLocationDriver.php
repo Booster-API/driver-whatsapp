@@ -2,13 +2,12 @@
 
 namespace BotMan\Drivers\WhatsappWeb;
 
-use BotMan\BotMan\Messages\Attachments\Video;
+use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\VideoException;
 
-class WhatsappWebVideoDriver extends WhatsappWebDriver
+class WhatsappLocationDriver extends WhatsappDriver
 {
-    const DRIVER_NAME = 'TelegramVideo';
+    const DRIVER_NAME = 'TelegramLocation';
 
     /**
      * Determine if the request is for this driver.
@@ -17,7 +16,7 @@ class WhatsappWebVideoDriver extends WhatsappWebDriver
      */
     public function matchesRequest(): bool
     {
-        return $this->event->get('type') === 'video' && !$this->fromMe();
+        return ! is_null($this->event->get('from')) && ! is_null($this->event->get('location'));
     }
 
     /**
@@ -48,26 +47,18 @@ class WhatsappWebVideoDriver extends WhatsappWebDriver
     public function loadMessages()
     {
         $message = new IncomingMessage(
-            Video::PATTERN,
-            $this->event->get('from'),
-            $this->event->get('to'),
+            Location::PATTERN,
+            $this->event->get('from')['id'],
+            $this->event->get('chat')['id'],
             $this->event
         );
-        $message->setVideos($this->getVideos());
+        $message->setLocation(new Location(
+            $this->event->get('location')['latitude'],
+            $this->event->get('location')['longitude'],
+            $this->event->get('location')
+        ));
 
         $this->messages = [$message];
-    }
-
-    /**
-     * Retrieve a image from an incoming message.
-     * @return array A download for the image file.
-     */
-    private function getVideos(): array
-    {
-        $video = $this->message->get('attachmentData');
-//        $caption = $this->event->get('caption');
-
-        return [new Video($this->buildFileApiUrl(), $video['data'])];
     }
 
     /**

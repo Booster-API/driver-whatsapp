@@ -2,19 +2,13 @@
 
 namespace BotMan\Drivers\WhatsappWeb;
 
-use BotMan\BotMan\Messages\Attachments\Image;
-use BotMan\BotMan\Messages\Incoming\Answer;
+use BotMan\BotMan\Messages\Attachments\File;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\ImageException;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Symfony\Component\Mime\MimeTypes;
+use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\FileException;
 
-class WhatsappWebPhotoDriver extends WhatsappWebDriver
+class WhatsappFileDriver extends WhatsappDriver
 {
-    const DRIVER_NAME = 'WhatsAppPhoto';
+    const DRIVER_NAME = 'TelegramFile';
 
     /**
      * Determine if the request is for this driver.
@@ -23,7 +17,7 @@ class WhatsappWebPhotoDriver extends WhatsappWebDriver
      */
     public function matchesRequest(): bool
     {
-        return $this->event->get('type') === 'image' && !$this->fromMe();
+        return $this->event->get('type') === 'document' && !$this->fromMe();
     }
 
     /**
@@ -54,27 +48,25 @@ class WhatsappWebPhotoDriver extends WhatsappWebDriver
     public function loadMessages()
     {
         $message = new IncomingMessage(
-            Image::PATTERN,
+            File::PATTERN,
             $this->event->get('from'),
             $this->event->get('to'),
             $this->event
         );
-
-        $message->setImages($this->getImages());
+        $message->setFiles($this->getFiles());
 
         $this->messages = [$message];
     }
 
     /**
-     * Retrieve a image from an incoming message.
-     * @return array A download for the image file.
+     * Retrieve a file from an incoming message.
+     * @return array A download for the files.
      */
-    private function getImages(): array
+    private function getFiles(): array
     {
-        $photo = $this->message->get('attachmentData');
-        $caption = $this->event->get('caption');
+        $file = $this->message->get('attachmentData');
 
-        return [(new Image($this->buildFileApiUrl(), $photo['data']))->title($caption)];
+        return [new File($this->buildFileApiUrl(), $file['data'])];
     }
 
     /**
