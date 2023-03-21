@@ -19,8 +19,7 @@
     "require": {
         "php": "^8.0",
         "botman/botman": "^2.6",
-        "ext-curl": "*",
-        "capevace/laravel-gpt": "^1.0"
+        "ext-curl": "*"
     },
     "require-dev": {
         "illuminate/contracts": "^9.0",
