@@ -1,22 +1,95 @@
-# BotMan Whatsapp Web Driver
+# Botman WhatsApp Driver
+Este é um Driver do Botman para se comunicar com o WhatsApp. O Driver permite criar chatbots para o WhatsApp, enviando e recebendo mensagens, gerenciando conversas e mantendo o estado da conversa com o usuário.
 
-BotMan driver to connect Whatsapp Web with [BotMan](https://github.com/botman/botman)
+## Requisitos
+Antes de usar este Driver, você deve ter:
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/botman/driver-whatsapp-web.svg?style=flat-square)](https://packagist.org/packages/botman/driver-whatsapp-web)
-[![Build Status](https://travis-ci.org/botman/driver-whatsapp-web.svg?branch=master)](https://travis-ci.org/botman/driver-whatsapp-web)
-[![codecov](https://codecov.io/gh/botman/driver-whatsapp-web/branch/master/graph/badge.svg)](https://codecov.io/gh/botman/driver-whatsapp-web)
+Uma conta comercial no WhatsApp Business API
+- Credenciais para acessar a API do WhatsApp
+- PHP 8.0 ou superior
+- Botman 2.6 
 
-## Contributing
+## Instalação
+Para instalar este Driver, basta executar o seguinte comando no terminal:
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+```bash
+composer require booster-api/driver-whatsapp
+```
 
-[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/0)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/0)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/1)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/1)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/2)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/2)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/3)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/3)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/4)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/4)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/5)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/5)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/6)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/6)[![](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/images/7)](https://sourcerer.io/fame/feralheart/botman/driver-whatsapp-web/links/7)
+## Configuração
+Para usar este Driver, você precisa adicionar as seguintes configurações ao seu arquivo `config/botman/whatsapp-web.php`:
 
-## Security Vulnerabilities
+```injectablephp
+return [
 
-If you discover a security vulnerability within BotMan, please send an e-mail to Marcel Pociot at m.pociot@gmail.com. All security vulnerabilities will be promptly addressed.
+    /*
+    |--------------------------------------------------------------------------
+    | Whatsapp Web Token
+    |--------------------------------------------------------------------------
+    |
+    | Your Whatsapp Web bot token you received after creating
+    | the chatbot through Whatsapp Web.
+    |
+    */
+    'secret' => env('WHATSAPP_WEB_SECRET'),
+    'url' => env('WHATSAPP_WEB_URL'),
+    'api_key' => env('WHATSAPP_WEB_API_KEY'),
+];
 
-## License
+```
+- `WHATSAPP_WEB_SECRET`: é a chave secreta usada para autenticar as solicitações enviadas para o seu webhook. Esta chave deve ser definida no console de desenvolvimento do WhatsApp.
 
-BotMan is free software distributed under the terms of the MIT license.
- 
+- `WHATSAPP_WEB_URL`: é a URL do webhook que recebe as solicitações do WhatsApp. Esta URL também deve ser definida no console de desenvolvimento do WhatsApp.
+
+- `WHATSAPP_WEB_API_KEY`: é a chave de API usada para autenticar as solicitações enviadas para o seu webhook. Esta chave deve ser gerada por você e pode ser usada para verificar se a solicitação veio do WhatsApp Web API.
+
+Aqui está um exemplo de como definir essas variáveis de configuração em um arquivo `.env`:
+
+```dotenv
+WHATSAPP_WEB_SECRET=your_webhook_secret
+WHATSAPP_WEB_URL=https://api.booster-api.com
+WHATSAPP_WEB_API_KEY=your_api_key
+```
+
+## Uso
+Para usar este Driver, basta criar uma nova instância do Botman e definir as rotas de conversação da seguinte maneira:
+
+```injectablephp
+use BotMan\BotMan\BotMan;
+use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Drivers\DriverManager;
+
+$config = [
+    'secret' => 'WHATSAPP_WEB_SECRET',
+    'url' => 'WHATSAPP_WEB_URL',
+    'api_key' => 'WHATSAPP_WEB_API_KEY',
+];
+
+DriverManager::loadDriver(BotMan\Drivers\WhatsappWeb\WhatsappWebDriver::class);
+
+$botman = BotManFactory::create($config);
+
+$botman->hears('oi', function (BotMan $bot) {
+    $bot->reply('Olá! Como posso ajudar?');
+});
+
+$botman->listen();
+```
+Este exemplo define uma rota que responde à mensagem 'oi' com uma mensagem de saudação.
+
+Para mais informações sobre como usar o Botman, consulte a documentação oficial: [https://botman.io/2.0/getting-started](https://botman.io/2.0/getting-started)
+
+## Features
+lista de tipos de mensagens que podem ser enviadas usando o Driver do Botman para o WhatsApp:
+
+-[X] Texto: mensagens de texto simples
+-[X] Imagens: mensagens com imagens (JPEG ou PNG)
+-[X] Arquivos de áudio: mensagens de áudio (MP3 ou AAC)
+-[X] Vídeos: mensagens com vídeos (MP4)
+-[ ] Localização: mensagens com a localização do remetente
+-[ ] Contatos: mensagens com informações de contato (nome e número de telefone)
+-[X] Documentos: mensagens com documentos anexados (PDF, DOCX, XLSX)
+-[ ] Mensagens de sistema: mensagens que o WhatsApp envia, como notificações de entrega, leitura e outras informações de status.
+
+## Contribuição
+Se você quiser contribuir com este Driver, sinta-se à vontade para enviar um pull request ou abrir uma nova issue. Sua ajuda é muito bem-vinda!
