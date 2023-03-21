@@ -4,7 +4,7 @@ Este é um Driver do Botman para se comunicar com o WhatsApp. O Driver permite c
 ## Requisitos
 Antes de usar este Driver, você deve ter:
 
-Uma conta comercial no WhatsApp Business API
+Uma conta no [Booster API](https://www.booster-api.com.br)
 - Credenciais para acessar a API do WhatsApp
 - PHP 8.0 ou superior
 - Botman 2.6 
@@ -24,31 +24,31 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Whatsapp Web Token
+    | Whatsapp Token
     |--------------------------------------------------------------------------
     |
-    | Your Whatsapp Web bot token you received after creating
-    | the chatbot through Whatsapp Web.
+    | Your Whatsapp bot token you received after creating
+    | the chatbot through Whatsapp.
     |
     */
-    'secret' => env('WHATSAPP_WEB_SECRET'),
-    'url' => env('WHATSAPP_WEB_URL'),
-    'api_key' => env('WHATSAPP_WEB_API_KEY'),
+    'secret' => env('WHATSAPP_SECRET'),
+    'url' => env('WHATSAPP_URL'),
+    'api_key' => env('WHATSAPP_API_KEY'),
 ];
 
 ```
-- `WHATSAPP_WEB_SECRET`: é a chave secreta usada para autenticar as solicitações enviadas para o seu webhook. Esta chave deve ser definida no console de desenvolvimento do WhatsApp.
+- `WHATSAPP_SECRET`: é a chave secreta usada para autenticar as solicitações enviadas para o seu instancia do Whatsapp. Esta chave deve ser definida no console de desenvolvimento do WhatsApp.
 
-- `WHATSAPP_WEB_URL`: é a URL do webhook que recebe as solicitações do WhatsApp. Esta URL também deve ser definida no console de desenvolvimento do WhatsApp.
+- `WHATSAPP_URL`: é a URL da instancia do Whatsapp que recebe as solicitações do WhatsApp. Esta URL também deve ser definida no console de desenvolvimento no [Admin Booster API](https://www.booster-api.com.br/admin).
 
-- `WHATSAPP_WEB_API_KEY`: é a chave de API usada para autenticar as solicitações enviadas para o seu webhook. Esta chave deve ser gerada por você e pode ser usada para verificar se a solicitação veio do WhatsApp Web API.
+- `WHATSAPP_API_KEY`: é a chave de API usada para autenticar as solicitações enviadas para a API do Booster API. Esta chave deve ser gerada por você e pode ser usada para verificar se a solicitação veio da sua integração.
 
 Aqui está um exemplo de como definir essas variáveis de configuração em um arquivo `.env`:
 
 ```dotenv
-WHATSAPP_WEB_SECRET=your_webhook_secret
-WHATSAPP_WEB_URL=https://api.booster-api.com
-WHATSAPP_WEB_API_KEY=your_api_key
+WHATSAPP_SECRET=your_webhook_secret
+WHATSAPP_URL=https://api.booster-api.com
+WHATSAPP_API_KEY=your_api_key
 ```
 
 ## Uso
@@ -60,9 +60,9 @@ use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
 
 $config = [
-    'secret' => 'WHATSAPP_WEB_SECRET',
-    'url' => 'WHATSAPP_WEB_URL',
-    'api_key' => 'WHATSAPP_WEB_API_KEY',
+    'secret' => 'WHATSAPP_SECRET',
+    'url' => 'WHATSAPP_URL',
+    'api_key' => 'WHATSAPP_API_KEY',
 ];
 
 DriverManager::loadDriver(BotMan\Drivers\WhatsappWeb\WhatsappWebDriver::class);
