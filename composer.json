@@ -1,14 +1,15 @@
 {
     "name": "booster-api/driver-whatsapp",
-    "version": "1.0",
+    "version": "0.8",
     "license": "MIT",
-    "description": "Whatsapp Web driver for BotMan",
+    "description": "Whatsapp driver for BotMan",
     "keywords": [
         "Bot",
         "BotMan",
-        "Whatsapp Web"
+        "Whatsapp",
+        "Booster API"
     ],
-    "homepage": "https://github.com/Booster-API/driver-whatsapp",
+    "homepage": "https://www.booster-api.com.br",
     "authors": [
         {
             "name": "Luis Sobrinho",
