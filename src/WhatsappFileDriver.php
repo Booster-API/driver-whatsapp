@@ -1,10 +1,10 @@
 <?php
 
-namespace BoosterAPI\Whatsapp;
+namespace BoosterAPI\Whatsapp\Driver;
 
 use BotMan\BotMan\Messages\Attachments\File;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BoosterAPI\Whatsapp\Extensions\Attachments\FileException;
+use BoosterAPI\Whatsapp\Driver\Extensions\Attachments\FileException;
 
 class WhatsappFileDriver extends WhatsappDriver
 {

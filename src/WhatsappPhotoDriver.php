@@ -1,11 +1,11 @@
 <?php
 
-namespace BoosterAPI\Whatsapp;
+namespace BoosterAPI\Whatsapp\Driver;
 
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BoosterAPI\Whatsapp\Extensions\Attachments\ImageException;
+use BoosterAPI\Whatsapp\Driver\Extensions\Attachments\ImageException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;

@@ -1,9 +1,9 @@
 <?php
 
-namespace BoosterAPI\Whatsapp\Extensions\Attachments;
+namespace BoosterAPI\Whatsapp\Driver\Extensions\Attachments;
 
 use BotMan\BotMan\Messages\Attachments\Audio;
-use BoosterAPI\Whatsapp\Extensions\Attachments\Traits\AttachmentException;
+use BoosterAPI\Whatsapp\Driver\Extensions\Attachments\Traits\AttachmentException;
 
 class AudioException extends Audio
 {

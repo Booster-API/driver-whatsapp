@@ -1,6 +1,6 @@
 <?php
 
-namespace BoosterAPI\Whatsapp\Extensions\Attachments\Traits;
+namespace BoosterAPI\Whatsapp\Driver\Extensions\Attachments\Traits;
 
 trait AttachmentException
 {

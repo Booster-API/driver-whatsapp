@@ -1,10 +1,10 @@
 <?php
 
-namespace BoosterAPI\Whatsapp;
+namespace BoosterAPI\Whatsapp\Driver;
 
 use BotMan\BotMan\Messages\Attachments\Audio;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BoosterAPI\Whatsapp\Extensions\Attachments\AudioException;
+use BoosterAPI\Whatsapp\Driver\Extensions\Attachments\AudioException;
 
 class WhatsappAudioDriver extends WhatsappDriver
 {

@@ -1,6 +1,6 @@
 {
     "name": "booster-api/driver-whatsapp",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "license": "MIT",
     "description": "Whatsapp driver for BotMan",
     "keywords": [
@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BoosterAPI\\Whatsapp\\": "src/"
+            "BoosterAPI\\Whatsapp\\Driver": "src/"
         }
     },
     "autoload-dev": {
@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BoosterAPI\\Whatsapp\\Providers\\WhatsappWebServiceProvider"
+                "BoosterAPI\\Whatsapp\\Driver\\Providers\\WhatsappWebServiceProvider"
             ]
         }
     }
