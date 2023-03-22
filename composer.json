@@ -1,6 +1,6 @@
 {
     "name": "booster-api/driver-whatsapp",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "license": "MIT",
     "description": "Whatsapp driver for BotMan",
     "keywords": [
