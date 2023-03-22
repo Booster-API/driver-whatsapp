@@ -12,6 +12,8 @@ use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Attachments\Video;
 use BotMan\BotMan\Messages\Attachments\Contact;
 use BotMan\BotMan\Messages\Outgoing\Question;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,8 +75,8 @@ class WhatsappDriver extends HttpDriver
         $this->queryParameters = Collection::make($request->query);
         $this->header = Collection::make([
             'x-instance-id: ' . $this->payload->get('instance_id'),
-            'x-instance-secret: ' . $this->config->get('secret'),
-            'x-api-key: ' . $this->config->get('api_key'),
+            'x-instance-secret: ' . $this->config->get('secret', config('botman.whatsapp.secret')),
+            'x-api-key: ' . $this->config->get('api_key', config('botman.whatsapp.api_key')),
         ]);
     }
 
@@ -357,7 +359,7 @@ class WhatsappDriver extends HttpDriver
      */
     protected function buildApiUrl($endpoint): string
     {
-        return $this->config->get('url') . '/' . $endpoint;
+        return $this->config->get('url', config('botman.whatsapp.url')) . '/' . $endpoint;
     }
 
 
