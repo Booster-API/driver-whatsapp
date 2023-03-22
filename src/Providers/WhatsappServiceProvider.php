@@ -1,6 +1,6 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb\Providers;
+namespace BoosterAPI\Whatsapp\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use BotMan\BotMan\Drivers\DriverManager;

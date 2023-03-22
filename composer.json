@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BotMan\\Drivers\\WhatsappWeb\\": "src/"
+            "BoosterAPI\\Whatsapp\\": "src/"
         }
     },
     "autoload-dev": {
@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BotMan\\Drivers\\WhatsappWeb\\Providers\\WhatsappWebServiceProvider"
+                "BoosterAPI\\Whatsapp\\Providers\\WhatsappWebServiceProvider"
             ]
         }
     }

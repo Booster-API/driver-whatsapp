@@ -1,12 +1,12 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb;
+namespace BoosterAPI\Whatsapp;
 
 use Illuminate\Support\Collection;
 use BotMan\BotMan\Drivers\HttpDriver;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Attachments\File;
-use BotMan\Drivers\WhatsappWeb\Extensions\User;
+use BoosterAPI\Whatsapp\Extensions\User;
 use BotMan\BotMan\Messages\Attachments\Audio;
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Attachments\Video;
@@ -21,7 +21,7 @@ use BotMan\BotMan\Messages\Attachments\Location;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
-use BotMan\Drivers\WhatsappWeb\Exceptions\WhatsappWebException;
+use BoosterAPI\Whatsapp\Exceptions\WhatsappWebException;
 use Symfony\Component\Mime\MimeTypes;
 
 class WhatsappDriver extends HttpDriver

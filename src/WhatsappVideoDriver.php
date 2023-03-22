@@ -1,10 +1,10 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb;
+namespace BoosterAPI\Whatsapp;
 
 use BotMan\BotMan\Messages\Attachments\Video;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
-use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\VideoException;
+use BoosterAPI\Whatsapp\Extensions\Attachments\VideoException;
 
 class WhatsappVideoDriver extends WhatsappDriver
 {

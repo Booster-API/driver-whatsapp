@@ -1,6 +1,6 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb;
+namespace BoosterAPI\Whatsapp;
 
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\BotMan\Messages\Attachments\Contact;

@@ -1,6 +1,6 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb\Extensions;
+namespace BoosterAPI\Whatsapp\Extensions;
 
 use Illuminate\Support\Collection;
 

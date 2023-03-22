@@ -1,9 +1,9 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb\Extensions\Attachments;
+namespace BoosterAPI\Whatsapp\Extensions\Attachments;
 
 use BotMan\BotMan\Messages\Attachments\File;
-use BotMan\Drivers\WhatsappWeb\Extensions\Attachments\Traits\AttachmentException;
+use BoosterAPI\Whatsapp\Extensions\Attachments\Traits\AttachmentException;
 
 class FileException extends File
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace BotMan\Drivers\WhatsappWeb\Extensions;
+namespace BoosterAPI\Whatsapp\Extensions;
 
 use BotMan\BotMan\Interfaces\UserInterface;
 use BotMan\BotMan\Users\User as BotManUser;
