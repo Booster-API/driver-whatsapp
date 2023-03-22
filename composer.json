@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BoosterAPI\\Whatsapp\\Driver": "src/"
+            "BoosterAPI\\Whatsapp\\Driver\\": "src/"
         }
     },
     "autoload-dev": {
