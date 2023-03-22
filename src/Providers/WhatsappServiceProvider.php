@@ -4,13 +4,13 @@ namespace BoosterAPI\Whatsapp\Driver\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use BotMan\BotMan\Drivers\DriverManager;
-use BotMan\Drivers\WhatsappWeb\WhatsappDriver;
-use BotMan\Drivers\WhatsappWeb\WhatsappFileDriver;
-use BotMan\Drivers\WhatsappWeb\WhatsappAudioDriver;
-use BotMan\Drivers\WhatsappWeb\WhatsappPhotoDriver;
-use BotMan\Drivers\WhatsappWeb\WhatsappVideoDriver;
-use BotMan\Drivers\WhatsappWeb\WhatsappLocationDriver;
-use BotMan\Drivers\WhatsappWeb\WhatsappContactDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappFileDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappAudioDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappPhotoDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappVideoDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappLocationDriver;
+use BoosterAPI\Whatsapp\Driver\WhatsappContactDriver;
 
 class WhatsappServiceProvider extends ServiceProvider
 {

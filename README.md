@@ -65,7 +65,7 @@ $config = [
     'api_key' => 'WHATSAPP_API_KEY',
 ];
 
-DriverManager::loadDriver(BotMan\Drivers\WhatsappWeb\WhatsappWebDriver::class);
+DriverManager::loadDriver(BoosterAPI\Whatsapp\Driver\WhatsappWebDriver::class);
 
 $botman = BotManFactory::create($config);
 
